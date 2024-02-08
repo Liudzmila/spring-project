@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="p-4">
+
+<h2>Task List</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.status}"></td>
+        <td>
+            <a th:href="@{/spring-project-1/edit/{id}(id=${task.id})}" class="btn btn-primary btn-sm">Edit</a>
+            <a th:href="@{/spring-project-1/delete/{id}(id=${task.id})}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="pagination">
+    <span class="mr-2">Page: </span>
+    <span th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}">
+        <a th:href="@{/spring-project-1/tasks(page=${pageNumber})}" th:text="${pageNumber + 1}"
+           th:classappend="${pageNumber == currentPage} ? 'btn btn-primary btn-sm mr-2' : 'btn btn-outline-primary btn-sm mr-2'"></a>
+    </span>
+</div>
+<p></p>
+<a th:href="@{/spring-project-1/add}" class="btn btn-success btn-sm">Add Task</a>
+
+</body>
+</html>

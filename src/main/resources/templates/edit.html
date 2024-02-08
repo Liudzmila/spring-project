@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+
+                    <h2 class="card-title mb-4">Edit Task</h2>
+
+                    <form th:action="@{/spring-project-1/edit/{id}(id=${task.id})}" th:object="${task}" method="post">
+                        <div class="form-group">
+                            <label for="taskId">ID:</label>
+                            <span id="taskId" class="form-control" th:text="${task.id}" readonly></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskDescription">Description:</label>
+                            <input type="text" id="taskDescription" class="form-control" th:field="*{description}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="taskStatus">Status:</label>
+                            <select id="taskStatus" class="form-control" th:field="*{status}">
+                                <option th:each="status : ${T(in.sobaleva.domain.Status).values()}" th:value="${status}" th:text="${status}"></option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Task</button>
+                    </form>
+
+                    <a th:href="@{/spring-project-1/tasks}" class="btn btn-secondary mt-3">Back to Task List</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
