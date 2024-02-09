@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - "3306:3306"
+    volumes:
+      - my-db:/var/lib/mysql
+      - ./src/main/resources/startMySQL.sql:/docker-entrypoint-initdb.d/startMySQL.sql
+    healthcheck:
+      test: "usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 10s
+      timeout: 5s
+      retries: 3
+  tomcat:
+    image: tomcat:10
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - tom:/usr/local/tomcat/webapps
+      - ./target/spring-project-1.war:/usr/local/tomcat/webapps/spring-project-1.war
+volumes:
+  my-db:
+  tom:
