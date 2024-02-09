@@ -60,6 +60,8 @@ This is a sample Spring project showcasing basic CRUD operations using Spring MV
    docker-compose up --build
 
    ```
+
+5. Access the application at [http://localhost:8080/spring-project-1/](http://localhost:8080/spring-project-1/).
    
 ## Usage
 
