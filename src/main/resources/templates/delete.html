@@ -29,11 +29,11 @@
                 <dd class="col-sm-9" th:text="${task.status}"></dd>
             </dl>
 
-            <form th:action="@{/spring-project-1/delete/{id}(id=${task.id})}" method="post">
+            <form th:action="@{/delete/{id}(id=${task.id})}" method="post">
                 <input type="submit" class="btn btn-danger" value="Delete Task"/>
             </form>
 
-            <a th:href="@{/spring-project-1/tasks}" class="btn btn-secondary mt-3">Back to Task List</a>
+            <a th:href="@{/tasks}" class="btn btn-secondary mt-3">Back to Task List</a>
                 </div>
             </div>
         </div>

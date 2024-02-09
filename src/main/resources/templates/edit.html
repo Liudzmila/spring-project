@@ -16,7 +16,7 @@
 
                     <h2 class="card-title mb-4">Edit Task</h2>
 
-                    <form th:action="@{/spring-project-1/edit/{id}(id=${task.id})}" th:object="${task}" method="post">
+                    <form th:action="@{/edit/{id}(id=${task.id})}" th:object="${task}" method="post">
                         <div class="form-group">
                             <label for="taskId">ID:</label>
                             <span id="taskId" class="form-control" th:text="${task.id}" readonly></span>
@@ -34,7 +34,7 @@
                         <button type="submit" class="btn btn-primary">Update Task</button>
                     </form>
 
-                    <a th:href="@{/spring-project-1/tasks}" class="btn btn-secondary mt-3">Back to Task List</a>
+                    <a th:href="@{/tasks}" class="btn btn-secondary mt-3">Back to Task List</a>
 
                 </div>
             </div>

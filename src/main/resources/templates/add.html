@@ -16,7 +16,7 @@
 
           <h2 class="card-title mb-4">Add Task</h2>
 
-          <form th:action="@{/spring-project-1/add}" th:object="${task}" method="post">
+          <form th:action="@{/add}" th:object="${task}" method="post">
             <div class="form-group">
               <label for="description">Description:</label>
               <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Enter task description">
@@ -30,7 +30,7 @@
             <button type="submit" class="btn btn-success" id="submitButton">Add Task</button>
           </form>
 
-          <a th:href="@{/spring-project-1/tasks}" class="btn btn-secondary mt-3">Back to Task List</a>
+          <a th:href="@{/tasks}" class="btn btn-secondary mt-3">Back to Task List</a>
 
         </div>
       </div>

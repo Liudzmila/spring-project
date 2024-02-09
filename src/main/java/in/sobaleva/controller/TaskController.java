@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Controller
 @EnableWebMvc
-@RequestMapping("/spring-project-1")
+@RequestMapping("/")
 public class TaskController {
     private final TaskService taskService;
 
@@ -33,7 +33,7 @@ public class TaskController {
     @GetMapping
     public String getHomePage(){
         System.out.println("Controller HomePageController is actioned");
-        return "redirect:/spring-project-1/tasks";
+        return "redirect:/tasks";
     }
 
     @GetMapping("/tasks")
@@ -57,7 +57,7 @@ public class TaskController {
     @PostMapping("/add")
     public String addTask(@ModelAttribute Task task) {
         taskService.saveTask(task);
-        return "redirect:/spring-project-1/tasks";
+        return "redirect:/tasks";
     }
 
     @GetMapping("/edit/{id}")
@@ -69,7 +69,7 @@ public class TaskController {
             model.addAttribute("statuses", Status.values());
             return "edit";
         } else {
-            return "redirect:/spring-project-1/tasks";
+            return "redirect:/tasks";
         }
     }
 
@@ -89,7 +89,7 @@ public class TaskController {
             model.addAttribute("currentPage", page);
             model.addAttribute("totalPages", taskPage.getTotalPages());
         }
-        return "redirect:/spring-project-1/tasks?page=" + page;
+        return "redirect:/tasks?page=" + page;
     }
 
     @GetMapping("/delete/{id}")
@@ -100,13 +100,13 @@ public class TaskController {
             model.addAttribute("task", task.get());
             return "delete";
         } else {
-            return "redirect:/spring-project-1/tasks";
+            return "redirect:/tasks";
         }
     }
 
     @PostMapping("/delete/{id}")
     public String deleteTask(@PathVariable Integer id) {
         taskService.deleteTask(id);
-        return "redirect:/spring-project-1/tasks";
+        return "redirect:/tasks";
     }
 }
